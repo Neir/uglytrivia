@@ -45,10 +45,11 @@ public class Board {
         return BOARD_SIZE;
     }
 
-    public QuestionType currentCategory() {
-        if (getCurrentPlayer().getPlace() % 4 == 0) return QuestionType.POP;
-        if (getCurrentPlayer().getPlace() % 4 == 1) return QuestionType.SCIENCE;
-        if (getCurrentPlayer().getPlace() % 4 == 2) return QuestionType.SPORTS;
-        return QuestionType.ROCK;
+    public String currentCategory() {
+        int playerPlace = getCurrentPlayer().getPlace();
+        if (playerPlace % 4 == 0) return "Pop";
+        if (playerPlace % 4 == 1) return "Science";
+        if (playerPlace % 4 == 2) return "Sports";
+        return "Rock";
     }
 }

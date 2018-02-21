@@ -1,43 +1,32 @@
 package com.adaptionsoft.games.uglytrivia;
 
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 
 public class QuestionDeck {
-    private LinkedList<String> popQuestions;
-    private LinkedList<String> scienceQuestions;
-    private LinkedList<String> sportsQuestions;
-    private LinkedList<String> rockQuestions;
+    private Map<String, LinkedList<String>> questionsPerType;
 
     public QuestionDeck(int nomberOfQuestionPerType) {
-        popQuestions = new LinkedList<String>();
-        scienceQuestions = new LinkedList<String>();
-        sportsQuestions = new LinkedList<String>();
-        rockQuestions = new LinkedList<String>();
+        questionsPerType = new HashMap<String, LinkedList<String>>();
+        questionsPerType.put("Pop", new LinkedList<String>());
+        questionsPerType.put("Science", new LinkedList<String>());
+        questionsPerType.put("Sports", new LinkedList<String>());
+        questionsPerType.put("Rock", new LinkedList<String>());
 
         for (int i = 0; i < nomberOfQuestionPerType; i++) {
-            popQuestions.addLast(createQuestion("Pop", i));
-            scienceQuestions.addLast(createQuestion("Science", i));
-            sportsQuestions.addLast(createQuestion("Sports", i));
-            rockQuestions.addLast(createQuestion("Rock", i));
+            addQuestion("Pop", i);
+            addQuestion("Science", i);
+            addQuestion("Sports", i);
+            addQuestion("Rock", i);
         }
     }
 
-    private String createQuestion(String type, int index){
-        return type + " Question " + index;
+    private void addQuestion(String type, int index) {
+        questionsPerType.get(type).addLast(type + " Question " + index);
     }
 
-    public String useOneQuestion(QuestionType type) {
-        switch (type) {
-            case POP:
-                return popQuestions.removeFirst();
-            case SCIENCE:
-                return scienceQuestions.removeFirst();
-            case SPORTS:
-                return sportsQuestions.removeFirst();
-            case ROCK:
-                return rockQuestions.removeFirst();
-            default:
-                return "Question type unknown";
-        }
+    public String useOneQuestion(String type) {
+        return questionsPerType.get(type).removeFirst();
     }
 }
