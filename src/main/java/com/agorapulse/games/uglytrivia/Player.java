@@ -1,4 +1,4 @@
-package com.adaptionsoft.games.uglytrivia;
+package com.agorapulse.games.uglytrivia;
 
 public class Player {
     private String name;
@@ -30,6 +30,7 @@ public class Player {
     }
 
     public void winGoldCoin() {
+        name = name;
         purse++;
         System.out.println(name + " now has " + purse + " Gold Coins.");
     }
